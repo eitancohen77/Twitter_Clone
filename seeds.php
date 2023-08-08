@@ -13,23 +13,60 @@
     $servername = "localhost";
     $username = "root";
     $password = "12321";
+    $database = 'twitterClone';
 
-    $conn = new mysqli($servername, $username, $password);
+    $conn = new mysqli($servername, $username, $password, $database);
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
     echo "Connected successfully";
 
 
-    // First create the database
-    $sql = "CREATE DATABASE twitterClone";
+    // Create the database
+    /* $sql = "CREATE DATABASE twitterClone";
     if ($conn->query($sql) === TRUE) {
         echo "Database has been created";
     } else {
         echo "Errir creating database: " . $conn->error;
-    }
+    } */
 
     // Then create any table you want to add to the database
+
+    // Create tweets table
+    /* $sql = "CREATE TABLE tweets (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        tweet TEXT NOT NULL
+        )";
+    if ($conn->query($sql) === TRUE) {
+        echo "Database has been created";
+    } else {
+        echo "Errir creating database: " . $conn->error;
+    }  */
+
+    //Create user login table
+    /* $sql = "CREATE TABLE userLogin (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(30) NOT NULL,
+        password VARCHAR(30) NOT NULL
+        )";
+    if ($conn->query($sql) === TRUE) {
+        echo "Database has been created";
+    } else {
+        echo "Errir creating database: " . $conn->error;
+    }  */
+
+    // Create User information table
+    $sql = "CREATE TABLE userInfo (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        firstName VARCHAR(30) NOT NULL,
+        lastName VARCHAR(30) NOT NULL,
+        address VARCHAR(50)
+        )";
+    if ($conn->query($sql) === TRUE) {
+        echo "Database has been created";
+    } else {
+        echo "Errir creating database: " . $conn->error;
+    } 
 
     ?>
 </body>
