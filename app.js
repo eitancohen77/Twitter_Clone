@@ -1,4 +1,4 @@
-let tweetContainer = document.getElementById('tweetsContainer')
+/* let tweetContainer = document.getElementById('tweetsContainer')
 
 function createTweetElement(tweet) {
     const tweetElement = document.createElement("div")
@@ -14,4 +14,4 @@ tweetForm.addEventListener("submit", function(event) {
     const newTweetElement = createTweetElement(tweetContent);
     const tweetsContainer = document.getElementById("tweetsContainer");
     tweetsContainer.append(newTweetElement);
-})
+}) */
