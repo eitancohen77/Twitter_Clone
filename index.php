@@ -27,7 +27,6 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
     echo "Connected successfully";
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -37,6 +36,11 @@
 
             if ($conn->query($sql) === TRUE) {
                 echo "Tweet inserted successfully";
+
+                // we redirect the user back into the page that way everytime he refreshes, it wont
+                // activate the previous POST method and cause multiple tweets based off of refreshes
+                header("Location: index.php");
+                exit();
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -44,7 +48,14 @@
     }
 
 
+    $get_tweets_query = "SELECT * FROM tweets";
+    $results = $conn->query($get_tweets_query);
 
+    echo "<ul>";
+    while ($row = $results->fetch_assoc()) {
+        echo "<li>" . $row["tweet"] . "</li>";
+    }
+    echo "<ul>";
 
     ?>
 
