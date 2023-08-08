@@ -47,13 +47,33 @@
         }
     }
 
+    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_tweet"])) {
+        $tweet_id = $_POST["tweet_id"];
+        $sql = "DELETE FROM tweets WHERE id = '$tweet_id'";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Tweet deleted successfully";
+            // Redirect to the same page to prevent form resubmission
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Error deleting tweet: " . $conn->error;
+        }
+    }
+
 
     $get_tweets_query = "SELECT * FROM tweets";
     $results = $conn->query($get_tweets_query);
 
     echo "<ul>";
     while ($row = $results->fetch_assoc()) {
-        echo "<li>" . $row["tweet"] . "</li>";
+        $tweet_id = $row["id"];
+        echo "<li>" . $row["tweet"] . "
+            <form method='post' style='display: inline-block;'>
+                <input type='hidden' name='tweet_id' value='$tweet_id'>
+                <button type='submit' name='delete_tweet'>Delete Tweet</button>
+            </form>
+            </li>";
     }
     echo "<ul>";
 
