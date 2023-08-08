@@ -1,0 +1,25 @@
+#loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#nextButton {
+    margin-top: 20px;
+    width: 300px;
+    height: 35px;
+    border-radius: 40px;
+    font-size: 15px;
+}
+
+#loginBox {
+    width: 300px;
+    height: 60px;
+    font-size: 20px;
+}
+
+#loginInputInfo {
+    display: flex;
+    flex-direction: column;
+}

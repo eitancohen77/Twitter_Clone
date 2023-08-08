@@ -53,7 +53,6 @@
 
         if ($conn->query($sql) === TRUE) {
             echo "Tweet deleted successfully";
-            // Redirect to the same page to prevent form resubmission
             header("Location: index.php");
             exit();
         } else {
