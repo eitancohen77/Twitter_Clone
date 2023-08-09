@@ -12,6 +12,7 @@
 
     <div id="loginContainer">
         <div>
+        <a href="/home.php">MAKE THIS AN IMAGE LATER</a>
             <h1>Sign in to Twitter</h1>
             <form action=" login.php" method="POST">
                 <div id="loginInputInfo">
@@ -22,7 +23,7 @@
             </form>
             <div id="signUpSection">
                 <p style="margin: 0;">Don't have an account?</p>
-                <a style="margin-left: 2px;"href="twitter.com">Sign up</a>
+                <a style="margin-left: 2px;"href="signup.php">Sign up</a>
             </div>
         </div>
     </div>
