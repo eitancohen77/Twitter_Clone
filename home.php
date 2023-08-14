@@ -13,7 +13,7 @@
 <body>
     <div class="tweetInformation">
         <form id="tweetForm" name="tweetForm" action="home.php" method="POST">
-            <input type="text" name="tweet" id="tweetContent" placeholder="What is happening?!" required>
+            <textarea type="text" name="tweet" id="tweetContent" placeholder="What is happening?!" required></textarea>
             <button for="tweetForm" id='postButton' type="submit">Post</button>
         </form>
     </div>
@@ -84,14 +84,16 @@
         $tweet_id = $row["id"];
         echo "
             <div class='postedTweets'>
-                <p class='username'>EitantakesCISC3140</p>
-                <li>" . $row["tweet"] . "
+                <div class='userInfo'>
+                    <div class='user_name'><b>Eitan Cohen</b></div>
+                    <div style='color:rgba(150, 150, 150);' class='username'>@EitantakesCISC3140</div>
+                </div>
+                <p>" . $row["tweet"] . "
                 <form method='post' style='display: inline-block;'>
                     <input type='hidden' name='tweet_id' value='$tweet_id'>
-                    <button type='submit' name='delete_tweet'>Delete Tweet</button>
+                    <button style='width:20px; height: 20px; background-color: red;' type='submit' name='delete_tweet'></button>
                     <button type='submit' name='edit_tweet'> Edit Tweet</button>
                 </form>
-                </li>
             </div>
             ";
     }
