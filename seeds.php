@@ -44,7 +44,7 @@
     }  */
 
     //Create user login table
-    $sql = "CREATE TABLE userLogin (
+    /* $sql = "CREATE TABLE userLogin (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         username VARCHAR(30) NOT NULL,
         password VARCHAR(30) NOT NULL
@@ -53,7 +53,7 @@
         echo "Database has been created";
     } else {
         echo "Errir creating database: " . $conn->error;
-    }
+    } */
 
     // Create User information table
     /* $sql = "CREATE TABLE userInfo (
@@ -68,7 +68,7 @@
         echo "Errir creating database: " . $conn->error;
     } */
 
-    /* $sql = "ALTER TABLE userInfo DROP address;";
+    /* $sql = "ALTER TABLE userInfo ADD dob DATE;";
     if ($conn->query($sql) === TRUE) {
         echo "Database has been created";
     } else {

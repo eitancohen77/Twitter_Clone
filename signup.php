@@ -20,7 +20,9 @@
 
             <div id="additionalFields" style="display: none;">
                 <form name='signup' action="signup.php" method='POST'>
-
+                    <!-- I create a fake hidden input type which is caught whenever the POST 
+                    is sent -->
+                    <input type="hidden" name="signup" value="1">
                     <input type="text" name='firstName' id="firstName" placeholder="Enter your first name">
                     <input type="text" name='lastName' id="lastName" placeholder="Enter your last name">
                     <input type="text" name='dob' id="dobField" placeholder="Enter your date of birth">
