@@ -110,15 +110,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
 
                 $get_tweets_query = "SELECT 
-                tweets.id, 
-                tweets.tweet,
-                tweets.user_id, 
-                userLogin.username,
-                userInfo.firstname,
-                userInfo.lastname 
-                FROM userLogin 
-                INNER JOIN tweets ON tweets.user_id = userLogin.id
-                INNER JOIN userInfo on userInfo.user_id = userLogin.id";
+                    tweets.id, 
+                    tweets.tweet,
+                    tweets.user_id, 
+                    userLogin.username,
+                    userInfo.firstname,
+                    userInfo.lastname 
+                    FROM userLogin 
+                    INNER JOIN tweets ON tweets.user_id = userLogin.id
+                    INNER JOIN userInfo on userInfo.user_id = userLogin.id";
                 $results = $conn->query($get_tweets_query);
 
                 echo "<ul>";
@@ -129,31 +129,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $firstName = $row['firstname'];
                     $lastName = $row['lastname'];
                     echo "
-                    <div class='postedTweets'>
-                        <div class='userInfo'>
-                            <div class='user_name'><b>$firstName $lastName</b></div>
-                            <div style='color:rgba(150, 150, 150);' class='username'>@$username</div>
+                        <div class='postedTweets'>
+                            <div class='userInfo'>
+                                <div class='user_name'><b>$firstName $lastName</b></div>
+                                <div style='color:rgba(150, 150, 150);' class='username'>@$username</div>
+                            </div>
+                            <p>" . $tweet_content . "</p>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <form method='post' style='display: inline-block;'>
+                                            <input type='hidden' name='tweet_id' value='$tweet_id'>
+                                            <input type='hidden' name='username' value='$username'>
+                                            <button class='deleteButton' type='submit' name='delete_tweet'>Delete</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method='post' style='display: inline-block;'>
+                                            <input type='hidden' name='tweet_id' value='$tweet_id'>
+                                            <button class='editButton' type='submit' name='edit_tweet'> Edit Tweet</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
-                        <p>" . $tweet_content . "</p>
-                        <table>
-                            <tr>
-                                <td>
-                                    <form method='post' style='display: inline-block;'>
-                                        <input type='hidden' name='tweet_id' value='$tweet_id'>
-                                        <input type='hidden' name='username' value='$username'>
-                                        <button class='deleteButton' type='submit' name='delete_tweet'>Delete</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <form method='post' style='display: inline-block;'>
-                                        <input type='hidden' name='tweet_id' value='$tweet_id'>
-                                        <button class='editButton' type='submit' name='edit_tweet'> Edit Tweet</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                ";
+                    ";
                 }
                 echo "<ul>";
                 ?>
