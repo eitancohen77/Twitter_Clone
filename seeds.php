@@ -68,10 +68,17 @@
         echo "Errir creating database: " . $conn->error;
     } */
 
-    $sql = "ALTER TABLE tweets
+    /* $sql = "ALTER TABLE userInfo
     ADD FOREIGN KEY (user_id) REFERENCES userLogin(ID);";
     if ($conn->query($sql) === TRUE) {
         echo "Table has been altered";
+    } else {
+        echo "Errir creating database: " . $conn->error;
+    } */
+
+    $sql = "DELETE FROM userLogin;";
+    if ($conn->query($sql) === TRUE) {
+        echo "Table data has been deleted";
     } else {
         echo "Errir creating database: " . $conn->error;
     }

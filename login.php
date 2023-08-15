@@ -48,17 +48,19 @@ session_start();
         $enteredUsername = mysqli_real_escape_string($connection, $_POST['username']);
         $enteredPassword = mysqli_real_escape_string($connection, $_POST['password']);
 
-        $query = "SELECT password FROM userLogin WHERE username = '$enteredUsername'";
+        $query = "SELECT * FROM userLogin WHERE username = '$enteredUsername'";
         $result = mysqli_query($connection, $query);
 
         if ($result) {
             $row = mysqli_fetch_assoc($result);
             // User exists, now check the password
             $storedPassword = $row['password'];
+            $id = $row['id'];
 
             if ($storedPassword == $enteredPassword) {
-                $_SESSION['user_id'] = $enteredUsername;
+                $_SESSION['username'] = $enteredUsername;
                 $_SESSION['logged_in'] = true;
+                $_SESSION['user_id'] = $id;
 
                 header("Location: /home.php");
                 exit();

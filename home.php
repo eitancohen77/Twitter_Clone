@@ -63,7 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     if (isset($_POST["tweet"])) {
                         $tweet = $_POST["tweet"];
-                        $sql = "INSERT INTO tweets (tweet) VALUES ('$tweet')";
+                        $user_id = $_SESSION['user_id'];
+                        $sql = "INSERT INTO tweets (tweet, user_id) VALUES ('$tweet', '$user_id')";
 
                         if ($conn->query($sql) === TRUE) {
                             echo "Tweet inserted successfully";
@@ -80,14 +81,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["delete_tweet"])) {
                     $tweet_id = $_POST["tweet_id"];
-                    $sql = "DELETE FROM tweets WHERE id = '$tweet_id'";
+                    $loggedInUsername = $_SESSION['username'];
+                    $tweetUsername = $_POST['username'];
+                    if ($tweetUsername == $loggedInUsername) {
+                        $sql = "DELETE FROM tweets WHERE id = '$tweet_id'";
 
-                    if ($conn->query($sql) === TRUE) {
-                        echo "Tweet deleted successfully";
-                        header("Location: home.php");
-                        exit();
-                    } else {
-                        echo "Error deleting tweet: " . $conn->error;
+                        if ($conn->query($sql) === TRUE) {
+                            echo "Tweet deleted successfully";
+                            header("Location: home.php");
+                            exit();
+                        } else {
+                            echo "Error deleting tweet: " . $conn->error;
+                        }
                     }
                 }
 
@@ -104,25 +109,38 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     }
                 }
 
-
-                $get_tweets_query = "SELECT * FROM tweets";
+                $get_tweets_query = "SELECT 
+                tweets.id, 
+                tweets.tweet,
+                tweets.user_id, 
+                userLogin.username,
+                userInfo.firstname,
+                userInfo.lastname 
+                FROM userLogin 
+                INNER JOIN tweets ON tweets.user_id = userLogin.id
+                INNER JOIN userInfo on userInfo.user_id = userLogin.id";
                 $results = $conn->query($get_tweets_query);
 
                 echo "<ul>";
                 while ($row = $results->fetch_assoc()) {
                     $tweet_id = $row["id"];
+                    $tweet_content = $row['tweet'];
+                    $username = $row["username"];
+                    $firstName = $row['firstname'];
+                    $lastName = $row['lastname'];
                     echo "
                     <div class='postedTweets'>
                         <div class='userInfo'>
-                            <div class='user_name'><b>Eitan Cohen</b></div>
-                            <div style='color:rgba(150, 150, 150);' class='username'>@EitantakesCISC3140</div>
+                            <div class='user_name'><b>$firstName $lastName</b></div>
+                            <div style='color:rgba(150, 150, 150);' class='username'>@$username</div>
                         </div>
-                        <p>" . $row["tweet"] . "</p>
+                        <p>" . $tweet_content . "</p>
                         <table>
                             <tr>
                                 <td>
                                     <form method='post' style='display: inline-block;'>
                                         <input type='hidden' name='tweet_id' value='$tweet_id'>
+                                        <input type='hidden' name='username' value='$username'>
                                         <button class='deleteButton' type='submit' name='delete_tweet'>Delete</button>
                                     </form>
                                 </td>

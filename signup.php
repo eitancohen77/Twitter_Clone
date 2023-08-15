@@ -52,16 +52,22 @@
                 $dob = $_POST['dob'];
                 $username = $_POST['username'];
                 $password = $_POST['password'];
-                $sql = "INSERT INTO userInfo (firstName, lastName, dob) VALUES ('$firstName', '$lastName', '$dob');";
-                $sql2 = "INSERT INTO userLogin (username, password) VALUES ('$username', '$password') ";
+                $sql = "INSERT INTO userLogin (username, password) VALUES ('$username', '$password');";
 
                 if ($conn->query($sql) === TRUE) {
-                    echo "Inserted into user Info";
-                    if ($conn->query($sql2) === TRUE) {
-                        echo "Inserted into user login";
-                        /* header("Location: home.php"); */
-                        exit();
-                    } else {
+                    echo "Inserted into user Login";
+                    $getUserID = "SELECT id FROM userLogin WHERE username = '$username';";
+                    $results = $conn->query($getUserID);
+                    if ($results->num_rows > 0) {
+                        $row = $results->fetch_assoc();
+                        $user_id = $row["id"];
+                        $sql2 = "INSERT INTO userInfo (firstName, lastName, dob, user_id) VALUES ('$firstName', '$lastName', '$dob', '$user_id');";
+                        if ($conn->query($sql2) === TRUE) {
+                            echo "Inserted into user Info";
+                            header("Location: home.php");
+                            exit();
+                        } else {
+                        }
                         echo "Error inserting into user login" . $conn->error;
                     }
                 } else {
