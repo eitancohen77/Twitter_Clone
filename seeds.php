@@ -68,12 +68,14 @@
         echo "Errir creating database: " . $conn->error;
     } */
 
-    /* $sql = "ALTER TABLE userInfo ADD dob DATE;";
+    $sql = "ALTER TABLE tweets
+    ADD FOREIGN KEY (user_id) REFERENCES userLogin(ID);";
     if ($conn->query($sql) === TRUE) {
-        echo "Database has been created";
+        echo "Table has been altered";
     } else {
         echo "Errir creating database: " . $conn->error;
-    } */
+    }
+
 
     ?>
 </body>

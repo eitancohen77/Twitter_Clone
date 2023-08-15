@@ -1,7 +1,3 @@
-<?php
-session_start();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +19,7 @@ session_start();
                     <input type="text" id='username' name="username" class="loginBox" placeholder="Phone, email, or username">
                     <input type="password" id='password' name="password" class="loginBox" placeholder="Password" style='display:none'>
                     <div id="nextButton"><b>Next</b></div>
-                    <button id="submitButton" name="login" style="display: none;"><b>Log In</b></button>
+                    <button id="submitButton" style="display: none;"><b>Log In</b></button>
 
                     <button id="forgetPassButton"><b>Forgot Password?</b></button>
                 </div>
@@ -36,39 +32,33 @@ session_start();
     </div>
 
     <?php
+    session_start(); // Start or resume the session
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
-        // Establish database connection (Replace with actual connection details)
-        $connection = mysqli_connect("localhost", "root", "12321", "twitterClone");
-
-        if (!$connection) {
+        $conn = mysqli_connect("localhost", "root", "12321", "twitterClone");
+        if (!$conn) {
             die("Database connection failed: " . mysqli_connect_error());
         }
 
-        $enteredUsername = mysqli_real_escape_string($connection, $_POST['username']);
-        $enteredPassword = mysqli_real_escape_string($connection, $_POST['password']);
+        // Existing code for database connection and user verification
 
-        $query = "SELECT password FROM userLogin WHERE username = '$enteredUsername'";
-        $result = mysqli_query($connection, $query);
+        if (password_verify($enteredPassword, $row['password'])) {
+            // User is logged in
+            // Store user information in session variables
+            $_SESSION['user_id'] = $enteredUsername; // You can use user's ID instead of username if available
+            $_SESSION['logged_in'] = true;
 
-        if ($result) {
-            $row = mysqli_fetch_assoc($result);
-            // User exists, now check the password
-            $storedPassword = $row['password'];
-
-            if ($storedPassword == $enteredPassword) {
-                $_SESSION['user_id'] = $enteredUsername;
-                $_SESSION['logged_in'] = true;
-
-                header("Location: /home.php");
-                exit();
-            } else {
-                echo '<script>console.log("Incorrect password");</script>';
-            }
+            echo '<script>
+                    console.log("LOGGED IN");
+                    window.location.href = "/home.php";
+                </script>';
         } else {
-            echo '<script>console.log("User does not exist");</script>';
+            echo '<script>console.log("Incorrect password");</script>';
         }
-        mysqli_close($connection);
+
+        mysqli_close($conn); // Close the database connection
+    } else {
+        // The rest of your HTML code
     }
     ?>
 
