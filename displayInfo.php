@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Login Information</title>
-    <style>
-        /* Add any CSS styling you want */
-    </style>
 </head>
 
 <body>
+    <!-- This page shows is used to display all the table information. In this case
+    we are using the userlogin table as a demonstration -->
     <h1>User Login Information</h1>
     <table>
         <tr>
