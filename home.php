@@ -19,10 +19,6 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Handle your form submissions and queries
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

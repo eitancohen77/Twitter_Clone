@@ -16,7 +16,6 @@
         <tr>
             <th>Username</th>
             <th>Password</th>
-            <!-- Add more column headers if needed -->
         </tr>
         <?php
         $query = "SELECT * FROM userLogin";
@@ -29,7 +28,6 @@
             echo "<tr>";
             echo "<td>" . $row['username'] . "</td>";
             echo "<td>" . $row['password'] . "</td>";
-            // Output more columns if needed
             echo "</tr>";
         }
         ?>
@@ -39,6 +37,5 @@
 </html>
 
 <?php
-// Close the database connection
 mysqli_close($connection);
 ?>

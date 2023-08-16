@@ -47,7 +47,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
         <?php
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
-            // Establish database connection (Replace with actual connection details)
             $connection = mysqli_connect("localhost", "root", "12321", "twitterClone");
 
             if (!$connection) {

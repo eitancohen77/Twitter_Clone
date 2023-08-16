@@ -15,7 +15,6 @@
             <img style='width: 80px; height: 80px;' src="images/twitterLogo.png" alt="">
             <h1>Join Twitter Today</h1>
 
-            <!-- Step 1: Create account button -->
             <button class='styledButton' id="createAccountButton"><b>Create account</b></button>
 
             <div id="additionalFields" style="display: none;">
@@ -94,20 +93,15 @@
         const dobField = document.getElementById('dobField');
 
         createAccountButton.addEventListener('click', () => {
-            // Show additional fields and the next button
             additionalFields.style.display = 'block';
             nextButton.style.display = 'block';
-            // Hide the create account button
             createAccountButton.style.display = 'none';
         });
 
         nextButton.addEventListener('click', () => {
-            // Show username and password fields
             usernameField.style.display = 'block';
             passwordField.style.display = 'block';
-            // Show the submit button
             submitButton.style.display = 'block';
-            // Hide the next button
             nextButton.style.display = 'none';
             firstNameField.style.display = 'none'
             lastNameField.style.display = 'none'
