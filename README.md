@@ -59,4 +59,5 @@ Challenges brought up were regarding sessions and a way in which I can keep a us
 ## References
 While specific references were not provided, resources like PHP and MySQL documentation, web development tutorials, and online communities have influenced the concept and development of the project. An example of this is the usage of sessions and  understanding how to authorize users to access the site. 
 https://www.youtube.com/watch?v=3CS-eQdcMLU 
+
 In conclusion, the Twitter clone web application encompasses a well-structured architecture that enables user authentication, tweet posting, and interaction. The UI design prioritizes user experience, while the database design ensures efficient data management. Challenges were addressed with security measures and optimization techniques, resulting in a functional and engaging platform.
