@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="public/styles/signup.css">
 </head>
 
 <body id="loginBackground">
 
     <div id="loginContainer">
         <div>
-            <img style='width: 80px; height: 80px;' src="images/twitterLogo.png" alt="">
+            <img style='width: 80px; height: 80px;' src="public/images/twitterLogo.png" alt="">
             <h1>Join Twitter Today</h1>
 
             <button class='styledButton' id="createAccountButton"><b>Create account</b></button>

@@ -17,7 +17,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="public/styles/login.css">
 </head>
 
 <body id="loginBackground">
@@ -25,7 +25,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <?php if (!$loggedIn) : ?>
         <div id="loginContainer">
             <div>
-                <img style='width: 80px; height: 80px;' src="images/twitterLogo.png" alt="">
+                <img style='width: 80px; height: 80px;' src="public/images/twitterLogo.png" alt="">
                 <!-- <a href="/home.php">MAKE THIS AN IMAGE LATER</a> -->
                 <h1>Sign in to Twitter</h1>
                 <form name='login' action=" login.php" method="POST">

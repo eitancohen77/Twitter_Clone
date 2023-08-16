@@ -28,7 +28,7 @@ if (!$conn) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="public/styles/home.css">
 
 </head>
 
@@ -39,7 +39,7 @@ if (!$conn) {
 
             <div id="navbar">
                 <div class="displayTag" id="homeTag">
-                    <img src='images/twitterHome.png' id="homeImage"></img>
+                    <img src='public/images/twitterHome.png' id="homeImage"></img>
                     <div id="home"><b>Home</b></div>
                 </div>
                 <a style="text-decoration:none; color: inherit;" href="logout.php" class="displayTag" id="logoutTag">
@@ -51,7 +51,7 @@ if (!$conn) {
             <div id="mainInfo">
 
                 <div class="tweetInformation">
-                    <img class='userProfile' src="images/twitterProfile.jpeg" alt="">
+                    <img class='userProfile' src="public/images/twitterProfile.jpeg" alt="">
                     <form id="tweetForm" name="tweetForm" action="home.php" method="POST">
                         <textarea type="text" name="tweet" id="tweetContent" placeholder="What is happening?!" required></textarea>
                         <button for="tweetForm" id='postButton' type="submit">Post</button>
@@ -131,7 +131,7 @@ if (!$conn) {
                     $lastName = $row['lastname'];
                     echo "
                     <div class='postedTweets'>
-                        <img class='userProfile' src='images/twitterProfile.jpeg'>
+                        <img class='userProfile' src='public/images/twitterProfile.jpeg'>
                         <div class='tweetDescription'>
                             <div class='userInfo'>
                                 <div class='user_name'><b>$firstName $lastName</b></div>
@@ -147,7 +147,7 @@ if (!$conn) {
                                                 <input type='hidden' name='tweet_id' value='$tweet_id'>
                                                 <input type='hidden' name='username' value='$username'>
                                                 <div class='deleteSection'>
-                                                    <img src='images/twitterDelete.png' class='deleteImage'>
+                                                    <img src='public/images/twitterDelete.png' class='deleteImage'>
                                                     <button class='deleteButton' type='submit' name='delete_tweet'>Delete</button>
                                                 </div>
                                             </form>
@@ -182,7 +182,7 @@ if (!$conn) {
                     if ($username !== $loggedInUsername) {
                         echo "
                         <div class='users'>
-                            <img style='margin-left:10px; margin-top: 7px;' class='userProfile' src='images/twitterProfile.jpeg'>
+                            <img style='margin-left:10px; margin-top: 7px;' class='userProfile' src='public/images/twitterProfile.jpeg'>
                             <div class='userFinderInfo'>
                                 <div><b>$firstName $lastName</b></div>
                                 <div style='color: rgba(150, 150, 150);'>@$username</div>
