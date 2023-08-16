@@ -3,6 +3,8 @@
 ## Project Overview: 
 I want to attempt to create at the very least the homepage of twitter. Reason why is because I already have some creative projects, so instead I want to really hone in on my front end skills so I figured what better site to try to replicate then one of the most widely known social media tech sites - Twitter.  
 The objective for this project is to give the user the ability to login to a unique account which will be stored in a MySQL database and once the user is logged in he can post whatever he would like to the main twitter page, as well edit or delete previous tweets by using CRUD operations.
+![](https://github.com/eitancohen77/Twitter_Clone/assets/98838116/e2e6425a-510a-4b13-b1f0-09ca84910131)
+
 
 With this being a social media site, its audience would be everyone but I can understand that my guess is mostly millennials and gen Zs would use this so around the ages 17-40 would be the majority of people on such site.
 
