@@ -38,20 +38,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
 
-
     <?php if ($loggedIn) : ?>
         <div id="homeInfo">
 
             <div id="navbar">
-                <div id="homeTag">Home</div>
+                <div class="displayTag" id="homeTag">
+                    <img src='images/twitterHome.png' id="homeImage"></img>
+                    <div id="home"><b>Home</b></div>
+                </div>
+                <a style="text-decoration:none; color: inherit;" href="logout.php" class="displayTag" id="logoutTag">
+                    <div class="image"></div>
+                    <div id="logOut"><b>Log Out</b></div>
+                </a>
             </div>
 
             <div id="mainInfo">
 
                 <div class="tweetInformation">
-                    <div id="profilePic">
-
-                    </div>
+                    <img class='userProfile' src="images/twitterProfile.jpeg" alt="">
                     <form id="tweetForm" name="tweetForm" action="home.php" method="POST">
                         <textarea type="text" name="tweet" id="tweetContent" placeholder="What is happening?!" required></textarea>
                         <button for="tweetForm" id='postButton' type="submit">Post</button>
@@ -110,17 +114,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
 
                 $get_tweets_query = "SELECT 
-                    tweets.id, 
-                    tweets.tweet,
-                    tweets.user_id, 
-                    userLogin.username,
-                    userInfo.firstname,
-                    userInfo.lastname 
-                    FROM userLogin 
-                    INNER JOIN tweets ON tweets.user_id = userLogin.id
-                    INNER JOIN userInfo on userInfo.user_id = userLogin.id";
+                tweets.id, 
+                tweets.tweet,
+                tweets.user_id, 
+                userLogin.username,
+                userInfo.firstname,
+                userInfo.lastname 
+                FROM userLogin 
+                INNER JOIN tweets ON tweets.user_id = userLogin.id
+                INNER JOIN userInfo on userInfo.user_id = userLogin.id";
                 $results = $conn->query($get_tweets_query);
 
+                $loggedInUsername = $_SESSION['username'];
                 echo "<ul>";
                 while ($row = $results->fetch_assoc()) {
                     $tweet_id = $row["id"];
@@ -129,33 +134,67 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $firstName = $row['firstname'];
                     $lastName = $row['lastname'];
                     echo "
-                        <div class='postedTweets'>
+                    <div class='postedTweets'>
+                        <img class='userProfile' src='images/twitterProfile.jpeg'>
+                        <div class='tweetDescription'>
                             <div class='userInfo'>
                                 <div class='user_name'><b>$firstName $lastName</b></div>
-                                <div style='color:rgba(150, 150, 150);' class='username'>@$username</div>
+                                <div style='margin-left: 5px; color:rgba(150, 150, 150);' class='username'>@$username</div>
                             </div>
-                            <p>" . $tweet_content . "</p>
-                            <table>
-                                <tr>
-                                    <td>
-                                        <form method='post' style='display: inline-block;'>
-                                            <input type='hidden' name='tweet_id' value='$tweet_id'>
-                                            <input type='hidden' name='username' value='$username'>
-                                            <button class='deleteButton' type='submit' name='delete_tweet'>Delete</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form method='post' style='display: inline-block;'>
-                                            <input type='hidden' name='tweet_id' value='$tweet_id'>
-                                            <button class='editButton' type='submit' name='edit_tweet'> Edit Tweet</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    ";
-                }
+                            <p style='margin: 0px; '>" . $tweet_content . "</p>";
+                    if ($loggedInUsername === $username) {
+                        echo "
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <form method='post' style='display: inline-block;'>
+                                                <input type='hidden' name='tweet_id' value='$tweet_id'>
+                                                <input type='hidden' name='username' value='$username'>
+                                                <div class='deleteSection'>
+                                                    <img src='images/twitterDelete.png' class='deleteImage'>
+                                                    <button class='deleteButton' type='submit' name='delete_tweet'>Delete</button>
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form method='post' style='display: inline-block;'>
+                                                <input type='hidden' name='tweet_id' value='$tweet_id'>
+                                                <button class='editButton' type='submit' name='edit_tweet'>Edit Tweet</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </table>";
+                    }
+                    echo "</div>
+                    </div>";
+                };
                 echo "<ul>";
+                ?>
+            </div>
+
+            <div id="sideInfo">
+                <div style='margin-left: 10px; font-size: 22px;'><b>Who to Follow</b></div>
+                <?php
+                $get_users_query = "SELECT userLogin.username, userInfo.firstname, userInfo.lastname FROM userLogin INNER JOIN userInfo ON userLogin.id = userInfo.user_id";
+                $user_results = $conn->query($get_users_query);
+
+                while ($user_row = $user_results->fetch_assoc()) {
+                    echo "<div>";
+                    $username = $user_row['username'];
+                    $firstName = $user_row['firstname'];
+                    $lastName = $user_row['lastname'];
+                    if ($username !== $loggedInUsername) {
+                        echo "
+                        <div class='users'>
+                            <img style='margin-left:10px; margin-top: 7px;' class='userProfile' src='images/twitterProfile.jpeg'>
+                            <div class='userFinderInfo'>
+                                <div><b>$firstName $lastName</b></div>
+                                <div style='color: rgba(150, 150, 150);'>@$username</div>
+                            </div>
+                        </div>";
+                    }
+                    echo "<div>";
+                }
                 ?>
             </div>
         </div>

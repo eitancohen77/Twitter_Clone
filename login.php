@@ -17,7 +17,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 
 <body id="loginBackground">
@@ -25,14 +25,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     <?php if (!$loggedIn) : ?>
         <div id="loginContainer">
             <div>
-                <a href="/home.php">MAKE THIS AN IMAGE LATER</a>
+                <img style='width: 80px; height: 80px;' src="images/twitterLogo.png" alt="">
+                <!-- <a href="/home.php">MAKE THIS AN IMAGE LATER</a> -->
                 <h1>Sign in to Twitter</h1>
                 <form name='login' action=" login.php" method="POST">
                     <div id="loginInputInfo">
                         <input type="text" id='username' name="username" class="loginBox" placeholder="Phone, email, or username">
                         <input type="password" id='password' name="password" class="loginBox" placeholder="Password" style='display:none'>
-                        <div id="nextButton"><b>Next</b></div>
-                        <button id="submitButton" name="login" style="display: none;"><b>Log In</b></button>
+                        <div class="button" id="nextButton"><b>Next</b></div>
+                        <button class="button" id="loginButton" name="login" style="display: none;"><b>Log In</b></button>
 
                         <button id="forgetPassButton"><b>Forgot Password?</b></button>
                     </div>
@@ -90,7 +91,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         const next = document.getElementById('nextButton')
         const username = document.getElementById('username')
         const password = document.getElementById('password')
-        const submitButton = document.getElementById('submitButton')
+        const submitButton = document.getElementById('loginButton')
         next.addEventListener('click', () => {
             username.style.display = 'none'
             password.style.display = 'block'

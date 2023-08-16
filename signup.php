@@ -12,7 +12,7 @@
 
     <div id="loginContainer">
         <div>
-            <a href="/home.php">MAKE THIS AN IMAGE LATER</a>
+            <img style='width: 80px; height: 80px;' src="images/twitterLogo.png" alt="">
             <h1>Join Twitter Today</h1>
 
             <!-- Step 1: Create account button -->
@@ -23,15 +23,19 @@
                     <!-- I create a fake hidden input type which is caught whenever the POST 
                     is sent -->
                     <input type="hidden" name="signup" value="1">
-                    <input type="text" name='firstName' id="firstName" placeholder="Enter your first name">
-                    <input type="text" name='lastName' id="lastName" placeholder="Enter your last name">
-                    <input type="text" name='dob' id="dobField" placeholder="Enter your date of birth">
-                    <input type="text" name='username' id="usernameField" placeholder="Enter your username" style="display: none;">
-                    <input type="password" name='password' id="passwordField" placeholder="Enter your password" style="display: none;">
+                    <div id="personalInfo">
+                        <input class='inputValue' type="text" name='firstName' id="firstName" placeholder="Enter your first name">
+                        <input class='inputValue' type="text" name='lastName' id="lastName" placeholder="Enter your last name">
+                        <input class='inputValue' type="text" name='dob' id="dobField" placeholder="Enter your date of birth">
+                    </div>
+                    <div id="loginInfo">
+                        <input class='inputValue' type="text" name='username' id="usernameField" placeholder="Enter your username" style="display: none;">
+                        <input class='inputValue' type="password" name='password' id="passwordField" placeholder="Enter your password" style="display: none;">
+                    </div>
 
-                    <div id="nextButton"><b>Next</b></div>
+                    <button class="styledButton" type="button" id="nextButton"><b>Next</b></button>
 
-                    <button id="submitButton" style="display: none;"><b>Sign Up</b></button>
+                    <button class="styledButton" id="submitButton" style="display: none;"><b>Sign Up</b></button>
                 </form>
             </div>
 
