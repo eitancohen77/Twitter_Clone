@@ -37,6 +37,7 @@ userInfo: Manages user profile information, such as id, firstName, lastName, and
 tweets: Organizes tweet data, comprising id, tweet, and user_id.
 userLogin and userInfo share an id field to link authentication and profile data.
 tweets uses the user_id field to associate tweets with the user who posted them.
+![](https://github.com/eitancohen77/Twitter_Clone/assets/98838116/b6524790-ba3e-4aa5-9973-7ab40771ce15)
 
 ## Functionality & Features
 Key functionalities of the Twitter clone include:
