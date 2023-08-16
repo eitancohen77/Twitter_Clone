@@ -20,11 +20,17 @@ Data is stored and retrieved from a MySQL database. User authentication data, in
 An example of a diagram of the project architecture can be visualized as follows:
 
 User Interaction
+
     |
+    
     v
+    
 Login/Signup ----> Homepage ----> Tweet Posting
+
     |                                  |
+    
     v                                 v
+    
 MySQL Database <--- User Data <--- Tweet Data
 
 ## User Interface (UI) Design
